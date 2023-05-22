@@ -1,0 +1,4 @@
+name: BedwarsInventorySwapper
+version: '${version}'
+main: dev.imlukas.bedwarsinventoryswapper.BedwarsInventorySwapper
+api-version: 1.19
