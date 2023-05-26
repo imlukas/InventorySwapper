@@ -1,6 +1,6 @@
 package dev.imlukas.bedwarsinventoryswapper.utils.messages;
 
-import dev.imlukas.bedwarsinventoryswapper.BedwarsInventorySwapper;
+import dev.imlukas.bedwarsinventoryswapper.InventorySwapperPlugin;
 import dev.imlukas.bedwarsinventoryswapper.utils.storage.YMLBase;
 import dev.imlukas.bedwarsinventoryswapper.utils.text.Placeholder;
 import net.md_5.bungee.api.ChatMessageType;
@@ -23,7 +23,7 @@ public class MessagesFile extends YMLBase {
     protected boolean usePrefixConfig, useActionBar, isLessIntrusive;
     private String msg;
 
-    public MessagesFile(BedwarsInventorySwapper plugin) {
+    public MessagesFile(InventorySwapperPlugin plugin) {
         super(plugin, new File(plugin.getDataFolder(), "messages.yml"), true);
         pattern = Pattern.compile("#[a-fA-F0-9]{6}");
         prefix = getConfiguration().getString("messages.prefix");

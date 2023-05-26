@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Manages player inventories.
@@ -21,7 +22,9 @@ public class InventoryManager {
      * @return the parsed inventory
      */
     public ParsedInventory parseInventory(Player player) {
-        ItemStack[] items = new ItemStack[45];
+        ItemStack[] items = new ItemStack[41];
+        ItemStack[] armor = new ItemStack[4];
+
 
         // slots 0-35: inventory contents
         // slots 36-39: armor
@@ -37,7 +40,9 @@ public class InventoryManager {
 
             if(index > 35 && index < 40) {
                 int correctIndex = index - 36;
-                items[index] = inventory.getArmorContents()[correctIndex];
+                ItemStack armorItem = inventory.getArmorContents()[correctIndex];
+                armor[correctIndex] = armorItem;
+                items[index] = armorItem;
             }
 
             if(index == 40) {
@@ -45,7 +50,7 @@ public class InventoryManager {
             }
         }
 
-        ParsedInventory parsedInventory = new ParsedInventory(player.getUniqueId(), items);
+        ParsedInventory parsedInventory = new ParsedInventory(player.getUniqueId(), items, armor);
         parsedInventories.put(player.getUniqueId(), parsedInventory);
         return parsedInventory;
     }
@@ -87,6 +92,7 @@ public class InventoryManager {
      */
     public ParsedInventory getRandomInventory(UUID toExclude) {
         List<ParsedInventory> inventories = new ArrayList<>(parsedInventories.values());
+        int offset = ThreadLocalRandom.current().nextInt(1, inventories.size());
 
         if (inventories.size() == 1) {
             return inventories.get(0);
@@ -100,7 +106,7 @@ public class InventoryManager {
 
         UUID inventoryPlayerId = randomInventory.getPlayerId();
 
-        if (inventoryPlayerId.equals(toExclude)) {
+        if (inventoryPlayerId.equals(toExclude) ) {
             return getRandomInventory(toExclude);
         }
 
@@ -108,5 +114,11 @@ public class InventoryManager {
         return randomInventory;
     }
 
-
+    /**
+     * Gets all parsed inventories.
+     * @return the parsed inventories
+     */
+    public Map<UUID, ParsedInventory> getParsedInventories() {
+        return parsedInventories;
+    }
 }

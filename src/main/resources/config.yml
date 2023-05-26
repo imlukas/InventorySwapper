@@ -1,1 +1,5 @@
 world: world
+
+bossbar:
+  text: "&7[Swapping in] &e%time%"
+  color: BLUE

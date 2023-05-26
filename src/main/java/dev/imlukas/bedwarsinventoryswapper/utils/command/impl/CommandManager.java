@@ -1,6 +1,6 @@
 package dev.imlukas.bedwarsinventoryswapper.utils.command.impl;
 
-import dev.imlukas.bedwarsinventoryswapper.BedwarsInventorySwapper;
+import dev.imlukas.bedwarsinventoryswapper.InventorySwapperPlugin;
 import dev.imlukas.bedwarsinventoryswapper.utils.command.BaseCommand;
 import dev.imlukas.bedwarsinventoryswapper.utils.command.SimpleCommand;
 import dev.imlukas.bedwarsinventoryswapper.utils.command.comparison.ComparisonResult;
@@ -42,9 +42,9 @@ public class CommandManager {
 
     private final Set<String> registeredBaseCommands = new HashSet<>();
     private final Map<String, SimpleCommand> commands = new HashMap<>();
-    private final BedwarsInventorySwapper main;
+    private final InventorySwapperPlugin main;
 
-    public CommandManager(BedwarsInventorySwapper main) {
+    public CommandManager(InventorySwapperPlugin main) {
         this.main = main;
     }
 

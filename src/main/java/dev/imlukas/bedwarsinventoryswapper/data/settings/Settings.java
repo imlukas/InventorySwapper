@@ -1,8 +1,7 @@
-package dev.imlukas.bedwarsinventoryswapper.data;
+package dev.imlukas.bedwarsinventoryswapper.data.settings;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 
 /**
@@ -11,16 +10,19 @@ import org.bukkit.configuration.file.FileConfiguration;
 public class Settings {
 
     private final World worldToSwap;
-
-    public Settings(World worldToSwap) {
-        this.worldToSwap = worldToSwap;
-    }
+    private final BossbarSettings bossbarSettings;
 
     public Settings(FileConfiguration config) {
         this.worldToSwap = Bukkit.getWorld(config.getString("world"));
+        this.bossbarSettings = new BossbarSettings(config.getConfigurationSection("bossbar"));
     }
 
     public World getWorldToSwap() {
         return worldToSwap;
     }
+
+    public BossbarSettings getBossbarSettings() {
+        return bossbarSettings;
+    }
+
 }

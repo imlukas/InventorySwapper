@@ -1,6 +1,6 @@
 package dev.imlukas.bedwarsinventoryswapper.utils.command;
 
-import dev.imlukas.bedwarsinventoryswapper.BedwarsInventorySwapper;
+import dev.imlukas.bedwarsinventoryswapper.InventorySwapperPlugin;
 import dev.imlukas.bedwarsinventoryswapper.utils.text.Placeholder;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,9 +12,9 @@ import java.util.List;
 
 public class BaseCommand implements CommandExecutor, TabCompleter {
 
-    private final BedwarsInventorySwapper main;
+    private final InventorySwapperPlugin main;
 
-    public BaseCommand(BedwarsInventorySwapper main) {
+    public BaseCommand(InventorySwapperPlugin main) {
         this.main = main;
     }
 
