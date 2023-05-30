@@ -66,6 +66,7 @@ public class InventorySwapper {
 
     /**
      * Returns a string representation of the given armor.
+     *
      * @param armor the armor
      * @return the string representation
      */

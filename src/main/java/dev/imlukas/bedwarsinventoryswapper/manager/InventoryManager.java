@@ -18,11 +18,12 @@ public class InventoryManager {
 
     /**
      * Parses and adds a player's inventory into the map.
+     *
      * @param player the player
      * @return the parsed inventory
      */
     public ParsedInventory parseInventory(Player player) {
-        ItemStack[] items = new ItemStack[41];
+        ItemStack[] items = new ItemStack[40];
         ItemStack[] armor = new ItemStack[4];
 
 
@@ -32,21 +33,17 @@ public class InventoryManager {
 
         PlayerInventory inventory = player.getInventory();
 
-        for(int index = 0; index < items.length; index++) {
+        for (int index = 0; index < items.length; index++) {
 
-            if(index < 36) {
+            if (index < 35) {
                 items[index] = inventory.getItem(index);
             }
 
-            if(index > 35 && index < 40) {
-                int correctIndex = index - 36;
+            if (index > 34 && index < 39) {
+                int correctIndex = index - 35;
                 ItemStack armorItem = inventory.getArmorContents()[correctIndex];
                 armor[correctIndex] = armorItem;
                 items[index] = armorItem;
-            }
-
-            if(index == 40) {
-                items[index] = inventory.getItemInOffHand();
             }
         }
 
@@ -57,6 +54,7 @@ public class InventoryManager {
 
     /**
      * Parses and adds multiple player inventories into the map.
+     *
      * @param players the players
      * @return the parsed inventories
      */
@@ -70,6 +68,7 @@ public class InventoryManager {
 
     /**
      * Removes a parsed inventory from the map.
+     *
      * @param playerId the player's UUID
      */
     public void removeParsedInventory(UUID playerId) {
@@ -78,6 +77,7 @@ public class InventoryManager {
 
     /**
      * Gets a parsed inventory from the map.
+     *
      * @param playerId the player's UUID
      * @return the parsed inventory
      */
@@ -87,6 +87,7 @@ public class InventoryManager {
 
     /**
      * Gets a random inventory that's not from the player with the given UUID.
+     *
      * @param toExclude the UUID to exclude
      * @return the random inventory
      */
@@ -106,7 +107,7 @@ public class InventoryManager {
 
         UUID inventoryPlayerId = randomInventory.getPlayerId();
 
-        if (inventoryPlayerId.equals(toExclude) ) {
+        if (inventoryPlayerId.equals(toExclude)) {
             return getRandomInventory(toExclude);
         }
 
@@ -116,6 +117,7 @@ public class InventoryManager {
 
     /**
      * Gets all parsed inventories.
+     *
      * @return the parsed inventories
      */
     public Map<UUID, ParsedInventory> getParsedInventories() {

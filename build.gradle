@@ -1,7 +1,9 @@
 plugins {
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'java'
 }
 
+tasks.build.dependsOn('shadowJar')
 group = 'dev.imlukas'
 version = '1.0'
 
@@ -19,10 +21,18 @@ repositories {
 
 dependencies {
     compileOnly 'org.jetbrains:annotations:22.0.0'
-    compileOnly "org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT"
-    
-    compileOnly 'org.projectlombok:lombok:1.18.22'
-    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+
+    implementation (fileTree(dir: "libs", include: ["*.jar"]))
+
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor('org.projectlombok:lombok:1.18.24')
+}
+
+shadowJar {
+    project.configurations.implementation.canBeResolved = true
+    configurations = [project.configurations.implementation]
+    minimize()
 }
 
 def targetJavaVersion = 17

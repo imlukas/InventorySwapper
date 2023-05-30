@@ -1,7 +1,6 @@
 package dev.imlukas.bedwarsinventoryswapper.data;
 
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
