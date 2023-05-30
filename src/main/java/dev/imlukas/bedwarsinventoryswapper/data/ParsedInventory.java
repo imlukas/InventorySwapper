@@ -39,5 +39,6 @@ public class ParsedInventory {
 
     public void applyTo(Player player) {
         player.getInventory().setContents(getItems());
+        player.getInventory().setArmorContents(getArmor());
     }
 }

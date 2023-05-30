@@ -23,28 +23,13 @@ public class InventoryManager {
      * @return the parsed inventory
      */
     public ParsedInventory parseInventory(Player player) {
-        ItemStack[] items = new ItemStack[40];
-        ItemStack[] armor = new ItemStack[4];
-
-
-        // slots 0-35: inventory contents
-        // slots 36-39: armor
-        // slots 40: offhand
-
         PlayerInventory inventory = player.getInventory();
 
-        for (int index = 0; index < items.length; index++) {
+        ItemStack[] items = inventory.getContents();
+        ItemStack[] armor = new ItemStack[4];
 
-            if (index < 35) {
-                items[index] = inventory.getItem(index);
-            }
-
-            if (index > 34 && index < 39) {
-                int correctIndex = index - 35;
-                ItemStack armorItem = inventory.getArmorContents()[correctIndex];
-                armor[correctIndex] = armorItem;
-                items[index] = armorItem;
-            }
+        for (int index = 0; index < armor.length; index++) {
+            armor[index] = inventory.getArmorContents()[index];
         }
 
         ParsedInventory parsedInventory = new ParsedInventory(player.getUniqueId(), items, armor);

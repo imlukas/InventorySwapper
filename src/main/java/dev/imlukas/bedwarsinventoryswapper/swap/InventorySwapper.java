@@ -6,6 +6,7 @@ import dev.imlukas.bedwarsinventoryswapper.manager.InventoryManager;
 import dev.imlukas.bedwarsinventoryswapper.utils.messages.MessagesFile;
 import dev.imlukas.bedwarsinventoryswapper.utils.text.Placeholder;
 import dev.imlukas.bedwarsinventoryswapper.utils.text.TextUtils;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -81,7 +82,7 @@ public class InventorySwapper {
         for (int i = 0; i < armor.length; i++) {
             ItemStack item = armor[i];
 
-            if (item == null) {
+            if (item == null || item.getType() == Material.AIR) {
                 armorString.append("empty");
             } else {
                 String itemType = TextUtils.capitalizeAll(item.getType().name());
