@@ -50,24 +50,6 @@ public class Placeholder<T> {
         this(placeholder, (object) -> replacement.get());
     }
 
-    public static List<Placeholder<Player>> asPlaceholderList(Map<String, Object> map) {
-        List<Placeholder<Player>> list = new ArrayList<>();
-
-        for (Map.Entry<String, Object> entry : map.entrySet()) {
-            Object value = entry.getValue();
-            String key = entry.getKey();
-
-            if (value instanceof Supplier<?> supplier) {
-                list.add(new Placeholder<>(key, supplier.get().toString()));
-                continue;
-            }
-
-            list.add(new Placeholder<>(key, (__) -> map.get(key).toString()));
-        }
-
-        return list;
-    }
-
     public List<String> replace(List<String> text, T object) {
         List<String> replaced = new ArrayList<>();
 

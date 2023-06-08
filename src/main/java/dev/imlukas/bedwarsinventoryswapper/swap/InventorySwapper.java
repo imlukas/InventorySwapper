@@ -10,6 +10,8 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+1.8 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -31,7 +33,7 @@ public class InventorySwapper {
      */
     public void swap(Player target, ParsedInventory targetInventory) {
         targetInventory.applyTo(target);
-        messages.sendMessage(target, "swap", List.of(
+        messages.sendMessage(target, "swap", Arrays.asList(
                 new Placeholder<>("player", targetInventory.getPlayer().getDisplayName()),
                 new Placeholder<>("armor", getArmorString(targetInventory.getArmor())))
         );
@@ -43,7 +45,7 @@ public class InventorySwapper {
      * @param playersCollection the players
      */
     public void swapAll(Collection<Player> playersCollection) {
-        List<Player> players = List.copyOf(playersCollection);
+        List<Player> players = new ArrayList<>(playersCollection);
 
         int size = players.size();
 
